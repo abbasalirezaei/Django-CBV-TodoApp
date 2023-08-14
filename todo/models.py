@@ -11,7 +11,7 @@ class Task(models.Model):
         User, on_delete=models.CASCADE, null=True, blank=True
     )
     title = models.CharField(max_length=200)
-    details = models.TextField()
+    details = models.TextField(blank=True, null=True,max_length=300)
     created_date =  models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     isCompleted = models.BooleanField(default=False)

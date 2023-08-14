@@ -2,6 +2,8 @@ from django import forms
 from .models import Task
 
 class TaskForm(forms.ModelForm):
+ 
+
     title = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Enter the title of your task...'}
                 ),
@@ -18,4 +20,4 @@ class TaskForm(forms.ModelForm):
     )
     class Meta:
         model = Task
-        fields = ['author','title', 'details']
+        fields = ['title', 'details']

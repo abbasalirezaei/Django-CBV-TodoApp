@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+| Confirm Delete
+{% endblock title %}
+
+{% block content %}
+
+<div class="container container-fluid">
+	<section class="vh-100">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col">
+					<div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
+						<div class="card-body py-4 px-4 px-md-5">
+
+							
+
+
+							
+							
+                            <div class="card-header">
+                                <h3 class="card-title mb-0 text-center">Delete Task</h3>
+                            </div>
+                            <div class="card-body py-4 text-center">
+                                <form method="post">{% csrf_token %}
+                                    <p class="py-2">
+
+                                    Are you sure to delete the <strong>«{{object}}»</strong> from
+                                    {% if object.author.get_full_name %}
+                                 <strong>   «{{object.author.get_full_name}}» article?</strong>
+                                    {% endif %}
+                                    <strong>«{{object.author.username}}» article?</strong>
+                                    </p>    
+                                    
+                                   
+
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+
+                                    <a href="{% url 'todo:index' %}">
+                                       
+                                            <button class="btn btn-primary" type="button">Back Home</button>
+                       
+                                    </a>
+                                   
+                                </form>
+                            </div>
+
+          
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock content %}

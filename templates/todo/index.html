@@ -29,8 +29,15 @@
 									class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
 									<div class="form-check">
 
-										<input class="form-check-input me-0" type="checkbox" value=""
-											id="flexCheckChecked1" aria-label="..." checked />
+										
+										{% if task.isCompleted  == True %}
+										<input class="form-check-input me-0" type="checkbox" value="{{task.id}}"
+										id="{{task.id}}" aria-label="..." checked  disabled/>
+										{% else %}
+										<input class="form-check-input me-0" type="checkbox" value="{{task.id}}"
+										id="{{task.id}}" aria-label="..." disabled />
+										{% endif %}
+											
 
 									</div>
 								</li>
@@ -38,6 +45,7 @@
 								<li
 									class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
 									<p class="lead fw-normal mb-0">{{task.title}}</p>
+									
 								</li>
 
 								{% if task.details %}
@@ -56,8 +64,29 @@
 											<i class="fas fa-pencil-alt me-3"></i>
 
 										</a>
+
 										<a href="{% url 'todo:delete_task' task.id %}" class="text-danger" data-mdb-toggle="tooltip"
-											title="Delete todo"><i class="fas fa-trash-alt"></i></a>
+											title="Delete todo"><i class="fas fa-trash-alt"></i>
+										
+										</a>
+										{% if task.isCompleted  == True %}
+
+											<a href="{% url 'todo:uncomplete_task' task.id %}" class="text-info mx-3" data-mdb-toggle="tooltip"
+												title="Un Complete todo"><i class="fa fa-check-circle" >
+
+												</i>
+											</a>
+
+										{% else %}
+
+											<a href="{% url 'todo:complete_task' task.id %}" class="text-success mx-3" data-mdb-toggle="tooltip"
+												title="Complete todo"><i class="fa fa-check-circle">
+
+											</i>
+											</a>
+											
+										{% endif %}
+										
 									</div>
 									<div class="text-end text-muted">
 										<a href="#!" class="text-muted" data-mdb-toggle="tooltip" title="Created date">

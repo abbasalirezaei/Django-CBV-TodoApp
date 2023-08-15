@@ -8,13 +8,13 @@ from .models import Task
 from .forms import TaskForm
 
 
-class TodoListView(ListView):
+class TodoListView(LoginRequiredMixin,ListView):
     model=Task
     context_object_name='tasks'
     template_name='todo/index.html'
 
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin,CreateView):
     model=Task
     form_class=TaskForm
     template_name='todo/create.html'
@@ -25,7 +25,7 @@ class TaskCreateView(CreateView):
         form.instance.author = self.request.user
         return super(TaskCreateView, self).form_valid(form)
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin,UpdateView):
     model = Task
     success_url = reverse_lazy("todo:index")
     form_class=TaskForm

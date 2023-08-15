@@ -1,0 +1,73 @@
+<!-- Navbar -->
+<nav
+  class="navbar navbar-expand-lg navbar-light my-1"
+  style="background-color: #e3f2fd"
+>
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'todo:index' %}">Django TodoApp</a>
+        </li>
+        {% if user.is_authenticated %}
+       
+        {% endif %}
+
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center">
+        {% if user.is_authenticated %}
+            <button type="button" class="btn btn-success me-3">
+                Hi,
+                {% if user.get_full_name %}
+                {{user.get_full_name}}
+                {% else %}
+                {{user.username}}
+                {% endif %}
+            </button>
+     
+            <a href="{% url 'accounts:logout' %}">
+
+                <button type="button" class="btn btn-danger px-3 me-2">Logout</button>
+            </a>
+            
+    
+        {% else %}
+            <a href="{% url 'accounts:login' %}">
+
+                <button type="button" class="btn btn-success px-3 me-2">Login</button>
+            </a>
+            <a href="{% url 'accounts:register' %}">
+
+                <button type="button" class="btn btn-info me-3">
+                    Sign up for free
+                    </button>
+            </a>
+
+        
+           
+        {% endif %}
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->

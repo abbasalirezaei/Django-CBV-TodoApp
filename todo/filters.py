@@ -10,7 +10,7 @@ BOOLEAN_CHOICES = (
 
 class TaskFilter(django_filters.FilterSet):
     isCompleted = django_filters.TypedChoiceFilter(choices=BOOLEAN_CHOICES,label='  Sort By Status')
-
+ 
     class Meta:
         model = Task
         fields = ['isCompleted']

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %}
 | Home
 {% endblock title %}
@@ -18,10 +18,24 @@
 								<i class="fas fa-list me-1"></i>
 								<u>Tasks</u>
 							</p>
+							<form method="get">
+								<div class="row">
+									<div class="col-md-3">
+										{{ filter.form.isCompleted|as_crispy_field}}
+									</div>
+									<div class="col-md-3">
+										<input type="submit" class="btn btn-primary my-4"/> 
+									</div>
+								</div>
+								
+								
 
 
+							</form>
 
-							{% for task in tasks %}
+							<hr>
+
+							{% for task in filter.qs %}
 
 							<ul class="list-group list-group-horizontal rounded-0 bg-transparent">
 

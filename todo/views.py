@@ -6,12 +6,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Task
 from .forms import TaskForm
-
+from .filters import TaskFilter
 
 class TodoListView(LoginRequiredMixin,ListView):
     model=Task
     context_object_name='tasks'
     template_name='todo/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = TaskFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 
 class TaskCreateView(LoginRequiredMixin,CreateView):

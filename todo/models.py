@@ -12,12 +12,16 @@ class Task(models.Model):
     )
     title = models.CharField(max_length=200)
     details = models.TextField(blank=True, null=True,max_length=300)
+    isCompleted = models.BooleanField(default=False)
+    
     created_date =  models.DateField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    isCompleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ('-created_date',)
+
+    def get_short_content(self):
+        return self.details[:5]

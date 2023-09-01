@@ -17,7 +17,10 @@ class TodoListView(LoginRequiredMixin,ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = TaskFilter(self.request.GET, queryset=self.get_queryset())
         return context
-
+        
+    def get_queryset(self):
+        return Task.objects.filter(author=self.request.user)
+        
 
 class TaskCreateView(LoginRequiredMixin,CreateView):
     model=Task
